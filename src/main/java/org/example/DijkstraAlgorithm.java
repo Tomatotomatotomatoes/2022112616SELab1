@@ -74,6 +74,7 @@ public class DijkstraAlgorithm {
     // 测试代码
     public static void main(String[] args) {
         // 构建测试图（与之前代码生成的图结构一致）
+        /*
         Map<String, Map<String, Integer>> graph = new HashMap<>();
         addEdge(graph, "to", "explore", 1);
         addEdge(graph, "explore", "strange", 1);
@@ -98,13 +99,14 @@ public class DijkstraAlgorithm {
         System.out.println("从起点 [" + startNode + "] 到各节点的最短距离:");
         for (Map.Entry<String, Integer> entry : shortestDistances.entrySet()) {
             System.out.printf("-> %-12s : %d\n", entry.getKey(), entry.getValue());
+            8?
+         */
         }
-    }
 
     // 辅助方法：添加边（与之前代码中的addEdge方法一致）
     private static void addEdge(
             Map<String, Map<String, Integer>> graph,
             String a, String b, int weight) {
-        graph.computeIfAbsent(a, k -> new HashMap<>()).put(b, weight);
+        graph.computeIfAbsent(a, k -> new HashMap<>()).merge(b, 1, Integer::sum);
     }
 }

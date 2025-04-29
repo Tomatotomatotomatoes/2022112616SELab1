@@ -11,7 +11,7 @@ import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 
-import org.example.DijkstraAlgorithm;
+
 
 public class TextToGraphConverter {
     public static void main(String[] args) throws IOException {
@@ -64,19 +64,23 @@ public class TextToGraphConverter {
             String word2 = scanner.nextLine();
 
             String res = queryBridgeWords(word1, word2, graph, true);
+            System.out.println(res);
         }else if(flg==2){
             //根据桥接词生成新文本
             String inputString = scanner.nextLine();
             String newText = generateNewText(inputString,graph);
+            System.out.println(newText);
         }else if(flg==3){
             //查询最短路径
             String source = scanner.nextLine();
             String end = scanner.nextLine();
             String path = calcShortestPath(source,end,graph);
+            System.out.println(path);
 
         }else if(flg==4){
             String pr = scanner.nextLine();
             Double res = calPageRank(pr,graph);
+            System.out.printf("pr value of word %s is %f%n",pr,res);
         }else if(flg==5){
             String path = randomWalk(graph);
             System.out.println(path);
