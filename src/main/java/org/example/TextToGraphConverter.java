@@ -274,40 +274,8 @@ public class TextToGraphConverter {
         return stringBuilder.toString();
     }
     public static Double calPageRank(String word,Map<String, Map<String, Integer>> graph){
-        //初始化pr值
-        Map<String,Double> PR = new HashMap<>();
-        for(String node: graph.keySet()){
-            PR.put(node,0.85);
-        }
-        Double d = 0.85; //阻尼因子
-        //初始化B_u
-        Map<String,Set<String>> B = new HashMap<>();
-        for (Map.Entry<String, Map<String, Integer>> entry : graph.entrySet()) {
-            String source = entry.getKey();
-            for (Map.Entry<String, Integer> edge : entry.getValue().entrySet()) {
-                String target = edge.getKey();
-                B.computeIfAbsent(target,k -> new HashSet<>()).add(source);
-                //System.out.printf("[%s -> %s] : %d\n", source, target, weight);
-            }
-        }
-        //初始化出度矩阵
-        Map<String,Integer> out = new HashMap<>();
-        for(String node:graph.keySet()){
-            out.put(node,graph.get(node).size());
-        }
-        //计算pr值
-        int N = graph.size();
-        for(String node:PR.keySet()){
-            Double tmp = 0.0;
-            for(String point_to:B.get(node)){
-                tmp+=PR.get(point_to)/out.get(point_to);
-            }
-            tmp*=d;
-            tmp+=(1-d)/N;
-            PR.put(node,tmp);
-
-        }
-        return PR.get(word);
+        Map<String,Double> res = PageRankCalculator.calculatePageRank(graph);
+        return res.get(word);
 
 
     }
