@@ -244,12 +244,12 @@ public class TextToGraphConverter {
 
         // 设置样式
         graphStream.setAttribute("ui.stylesheet",
-                "node { fill-color: #a0d8ef; size: 20px; text-alignment: under; }" +
+                "node { fill-color: #a0d8ef; size: 30px; text-alignment: under; }" +
                         "edge { fill-color: #777; }");
 
         // 显示窗口
         Viewer viewer = graphStream.display();
-        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
     }
 
     public static String calcShortestPath(String word1, String word2,Map<String, Map<String, Integer>> graph){
