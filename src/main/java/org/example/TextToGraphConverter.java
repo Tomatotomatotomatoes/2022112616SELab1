@@ -303,11 +303,12 @@ public class TextToGraphConverter {
         if(is_contin.equals("y")){
             //visited.add(cur);
             stringBuilder.append(String.format("%s->%s",cur.from,cur.to));
+            System.out.println(stringBuilder.toString());
         }else{
             return source;
         }
-
-        do{
+        while((!visited.contains(cur))&&(!graph.get(tmp_to).isEmpty()))
+        {
             visited.add(cur);
             tmp = tmp_to;
             to_list = new ArrayList<>(graph.get(tmp).keySet());
@@ -318,13 +319,14 @@ public class TextToGraphConverter {
                 cur = new edge(tmp,tmp_to);
 
                 stringBuilder.append(String.format("->%s",cur.to));
+                System.out.println(stringBuilder.toString());
             }else{
                 break;
             }
 
 
 
-        }while((!visited.contains(cur))&&(!graph.get(tmp_to).isEmpty()));
+        }
 
         return stringBuilder.toString();
 
